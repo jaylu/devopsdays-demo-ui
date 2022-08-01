@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 class="center">Demo Users</h1>
+    <div id="users" class="users flex"></div>
+</body>
+
+<script type="text/javascript">
+    function createUserDom(name, age) {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = /*html*/`
+        <div class="card item">
+            <img src="avatar.png" alt="Avatar" class="avatar">
+            <div class="container lightblue">
+                <h4>Name: ${name}</h4>
+                <p>Age: ${age}</p>
+            </div>
+        </div>`;
+        return wrapper.firstElementChild;
+    }
+
+
+    fetch('/users')
+        .then((response) => response.json())
+        .then((data) => {
+            const users = document.getElementById('users');
+            for (const user of data) {
+                const dom = createUserDom(user.name, user.age);
+                users.appendChild(dom);
+            }
+        });
+
+</script>
+
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        border-radius: 5px;
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .container {
+        padding: 2px 16px;
+    }
+
+    img {
+        border-radius: 5px 5px 0 0;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .item {
+        width: 300px;
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+
+    .users {
+        margin: 30px 30px;
+
+    }
+
+    .flex {
+        display: flex
+    }
+
+    .lightblue {
+        background-color: lightblue;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Segoe UI", Arial, sans-serif;
+        font-weight: 400;
+        margin: 10px 0;
+    }
+
+    p {
+        font-family: "Segoe UI", Arial, sans-serif;
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+    }
+</style>
+
+
+</html>
