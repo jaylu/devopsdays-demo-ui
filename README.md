@@ -1,7 +1,8 @@
 # devopsdays-demo-ui
 
-A demo project for 2022 DevOpsDays Guangzhou.
+A demo project for 2022 DevOpsDays Guangzhou. 
 
-## Step of using nodejs-cranker-connector
+See [nodejs-cranker-connector](https://github.com/jaylu/nodejs-cranker-connector) for 
+connecting nodejs app to cranker server.
 
-See [nodejs-cranker-connector](https://github.com/jaylu/nodejs-cranker-connector)
+You may need to maek a cranker server running from local first. see [devopsdays-cranker-router](https://github.com/jaylu/devopsdays-cranker-router)
