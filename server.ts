@@ -1,11 +1,13 @@
 import express, { Express, Request, Response } from 'express';
 import { Server } from 'http';
 import { AddressInfo } from 'net';
+import { connectToRouter, CrankerConnector } from "nodejs-cranker-connector";
 
 
 async function main() {
 
     let server: Server;
+    let connector: CrankerConnector;
 
     const port = 0;
     const app: Express = express();
@@ -24,6 +26,14 @@ async function main() {
 
     const targetURI = `http://localhost:${(server.address() as AddressInfo).port}`;
     console.log(`express http server is running at ${targetURI}`);
+
+    connector = await connectToRouter({
+        routerURIProvider: () => ['ws://localhost:12002'],
+        targetURI: targetURI,
+        targetServiceName: 'ui',
+        slidingWindow: 2,
+    })
+
 }
 
 main()
